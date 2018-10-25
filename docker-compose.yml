@@ -1,0 +1,17 @@
+version: "2"
+services:
+  vapala-blog-app:
+    container_name: vapala-blog-app
+    restart: always
+    build: .
+    ports:
+      - "8080:8080"
+    links:
+      - vapala-blog-mongo
+  vapala-blog-mongo:
+    container_name: vapala-blog-mongo
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
