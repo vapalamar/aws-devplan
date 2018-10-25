@@ -1,8 +1,10 @@
 const Hapi = require("hapi");
 
+require("./infra");
+
 const server = Hapi.server({
-  port: 8080,
-  host: "0.0.0.0"
+  port: process.env.API_PORT,
+  host: process.env.API_HOST
 });
 
 const init = async () => {
