@@ -6,8 +6,8 @@ const hashAsync = promisify(bcrypt.hash);
 const compareAsync = promisify(bcrypt.compare);
 
 function createUserToken(id, email, password) {
-  const token = JWT.sign({ id, email, password }, process.env.APP_KEY, {
-    expiresIn: "1d"
+  const token = JWT.sign({ id, email, password }, process.env.AUTH_KEY, {
+    expiresIn: "2h"
   });
 
   return token;

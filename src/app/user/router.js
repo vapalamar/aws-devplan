@@ -6,6 +6,17 @@ const service = require("./service");
 const routes = [
   {
     method: "POST",
+    path: "token",
+    handler: login,
+    options: {
+      auth: false,
+      validate: {
+        payload: validator.login
+      }
+    }
+  },
+  {
+    method: "POST",
     path: "",
     handler: createUser,
     options: {
@@ -25,6 +36,37 @@ const routes = [
 
 async function countUsers(request, h) {
   return await User.countDocuments().exec();
+}
+
+async function login(request, h) {
+  const user = await User.findOne()
+    .where("email")
+    .equals(request.payload.email)
+    .exec();
+
+  if (!user) {
+    return Boom.notFound("User not found");
+  }
+
+  const correctPassword = await service.comparePassword(
+    request.payload.password,
+    user.password
+  );
+
+  if (!correctPassword) {
+    return Boom.badRequest("Incorrect email or password");
+  }
+
+  try {
+    const token = await service.createUserToken(
+      user.id,
+      user.email,
+      user.password
+    );
+    return token;
+  } catch (e) {
+    return Boom.internal(e);
+  }
 }
 
 async function createUser(request, h) {
