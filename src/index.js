@@ -8,6 +8,7 @@ const server = Hapi.server({
 });
 
 const init = async () => {
+  await require("./plugins/auth")(server);
   await server.start();
   console.log(`Server running at: ${server.info.uri}`);
 };
