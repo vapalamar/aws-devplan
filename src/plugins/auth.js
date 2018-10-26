@@ -1,12 +1,9 @@
-const people = {
-  1: {
-    id: 1,
-    name: "Jen Jones"
-  }
-};
+const User = require("../app/user/model");
 
 const validate = async function(decoded, request) {
-  if (!people[decoded.id]) {
+  const user = await User.findById(decoded.id);
+
+  if (!user) {
     return { isValid: false };
   } else {
     return { isValid: true };

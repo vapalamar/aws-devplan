@@ -10,9 +10,12 @@
   "author": "Vyacheslav Palamar",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "3.0.0",
     "boom": "^7.2.0",
     "hapi": "^17.6.0",
     "hapi-auth-jwt2": "^8.1.0",
+    "joi": "^14.0.1",
+    "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.3.6"
   },
   "devDependencies": {
