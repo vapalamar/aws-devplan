@@ -13,6 +13,12 @@ function createUserToken(id, email, password) {
   return token;
 }
 
+function getUserFromToken(token) {
+  const user = JWT.decode(token);
+
+  return user;
+}
+
 async function encodeUserPass(raw) {
   return await hashAsync(raw, process.env.PASS_SALT);
 }
@@ -24,5 +30,6 @@ async function comparePassword(raw, hashed) {
 module.exports = {
   createUserToken,
   encodeUserPass,
-  comparePassword
+  comparePassword,
+  getUserFromToken
 };
