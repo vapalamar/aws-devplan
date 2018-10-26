@@ -3,6 +3,10 @@ services:
   vapala-blog-app:
     container_name: vapala-blog-app
     restart: always
+    env_file:
+      - .env
+    environment:
+      - IS_DOCKER=true
     build: .
     ports:
       - "8080:8080"
@@ -14,4 +18,4 @@ services:
     volumes:
       - ./data:/data/db
     ports:
-      - "27017:27017"
+      - "27018:27017"
