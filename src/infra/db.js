@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const mongoHost = process.env.IS_DOCKER ? process.env.MONGO_HOST : "localhost";
-const mongoPort = process.env.IS_DOCKER ? process.env.MONGO_PORT : "27017";
+const mongoPort = process.env.IS_DOCKER ? process.env.MONGO_PORT : "27018";
 const mongoDB = process.env.MONGO_DB || "vpb";
 const mongoURL = `mongodb://${mongoHost}:${mongoPort}/${mongoDB}`;
 let db;
